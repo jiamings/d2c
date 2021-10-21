@@ -1,0 +1,89 @@
+
+
+diffusion:
+    data:
+        dataset: "ffhq_moco_32"
+        image_size: 32
+        channels: 8
+        logit_transform: false
+        uniform_dequantization: false
+        gaussian_dequantization: false
+        random_flip: false
+        rescaled: false
+        num_workers: 4
+
+    model:
+        type: "simple"
+        in_channels: 8
+        out_ch: 8
+        ch: 128
+        ch_mult: [1, 2, 2, 2, 2]
+        num_res_blocks: 2
+        attn_resolutions: [16, ]
+        dropout: 0.1
+        var_type: fixedlarge
+        ema_rate: 0.9999
+        ema: True
+        resamp_with_conv: True
+
+    diffusion:
+        beta_schedule: linear
+        beta_start: 0.0001
+        beta_end: 0.02
+        num_diffusion_timesteps: 1000
+
+    training:
+        batch_size: 128
+        n_epochs: 10000
+        n_iters: 5000000
+        snapshot_freq: 5000
+        validation_freq: 20000
+
+    sampling:
+        batch_size: 32
+        last_only: True
+
+    optim:
+        weight_decay: 0.000
+        optimizer: "Adam"
+        lr: 0.0002
+        beta1: 0.9
+        amsgrad: false
+        eps: 0.00000001
+        grad_clip: 1.0
+
+
+autoencoder:
+    dataset: "ffhq_32"
+    arch_instance: 'res_mbconv'
+    kl_anneal_portion: 0.3
+    kl_const_portion: 0.0001
+    kl_const_coeff: 0.0001
+
+    num_nf: 0
+    num_x_bits: 5
+    num_latent_scales: 3
+    num_groups_per_scale: 8
+    num_latent_per_group: 8
+    ada_groups: False
+    min_groups_per_scale: 1
+
+    num_channels_enc: 24
+    num_preprocess_blocks: 1
+    num_preprocess_cells: 2
+    num_cell_per_cond_enc: 2
+    num_channels_dec: 24
+    num_postprocess_blocks: 1
+    num_postprocess_cells: 2
+    num_cell_per_cond_dec: 2
+
+    use_se: True
+    res_dist: True
+    
+    moco_dim: 2048
+    moco_k: 15000
+    moco_m: 0.9999
+    moco_t: 0.07
+
+    latent_dim: 32
+    resolution: 256

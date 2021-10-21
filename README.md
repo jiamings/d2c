@@ -1,6 +1,8 @@
 # D2C: Diffuison-Decoding Models for Few-shot Conditional Generation
 
-[**Project**](https://d2c-model.github.io/) | [**Paper**](https://arxiv.org/abs/2106.06819) | [![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1BLJCQv1NrwFupnWw54lKb337tdtM5dn8?usp=sharing)
+[**Project**](https://d2c-model.github.io/) | [**Paper**](https://arxiv.org/abs/2106.06819)
+
+[![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1BLJCQv1NrwFupnWw54lKb337tdtM5dn8?usp=sharing)
 
 
 PyTorch implementation of **D2C: Diffuison-Decoding Models for Few-shot Conditional Generation**.

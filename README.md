@@ -1,4 +1,4 @@
-# D2C: Diffuison-Decoding Models for Few-shot Conditional Generation
+# D2C: Diffusion-Decoding Models for Few-shot Conditional Generation
 
 [**Project**](https://d2c-model.github.io/) | [**Paper**](https://arxiv.org/abs/2106.06819)
 

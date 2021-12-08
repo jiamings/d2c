@@ -8,6 +8,7 @@ from numpy.core.fromnumeric import prod
 
 from .autoencoder import utils
 from .autoencoder.moco import builder
+from .autoencoder.moco import loader
 from .autoencoder.model_ae_moco import AutoEncoder
 from .diffusion.functions.denoising import compute_alpha, generalized_steps
 from .diffusion.models.diffusion import Model as Diffusion

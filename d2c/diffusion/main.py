@@ -88,11 +88,10 @@ def parse_args_and_config():
         default=0.0,
         help="eta used to control the variances of sigma",
     )
-    
+    parser.add_argument('--train_fname', type=str, default="",
+                        help='Training file')
     parser.add_argument('--latent_fname', type=str, default="",
                         help='latent fname')
-    parser.add_argument('--pca_fname', type=str, default="pca/CAHQ_pca_components_our_moco_25k.npy",
-                        help='pca fname')
     parser.add_argument(
         "--out_fname", type=str, default="images/moco_to_ddim.png", help="output fname of samples"
     )
@@ -109,11 +108,6 @@ def parse_args_and_config():
                         help='number of samples to generate')
     parser.add_argument("--sequence", action="store_true")
     parser.add_argument('--dataset', action='store_true')
-    parser.add_argument('--distill', action='store_true')
-    parser.add_argument('--sample_latent', action='store_true')
-    parser.add_argument('--rec_from_latent', action='store_true')
-    parser.add_argument('--pca_interpolation', action='store_true')
-    parser.add_argument('--pca_interpolation_moco_latent', action='store_true')
     parser.add_argument('--autoencoder', action='store_true')
     parser.add_argument('--reconstruct', action='store_true')
     parser.add_argument('--noise_add_steps', type=int, default=0)
@@ -121,12 +115,15 @@ def parse_args_and_config():
 
     args = parser.parse_args()
     args.log_path = os.path.join(args.exp, "logs", args.doc)
+    if not os.path.exists(args.log_path):
+        os.makedirs(args.log_path)
 
     # parse config file
     with open(os.path.join("configs", args.config), "r") as f:
         config = yaml.safe_load(f)
     new_config = dict2namespace(config)
-
+    tb_path = os.path.join(args.exp, "tensorboard", args.doc)
+    new_config.tb_logger = tb.SummaryWriter(log_dir=tb_path)
     
     level = getattr(logging, args.verbose.upper(), None)
     if not isinstance(level, int):
@@ -145,6 +142,7 @@ def parse_args_and_config():
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     logging.info("Using device: {}".format(device))
     new_config.device = device
+
 
     # set random seed
     torch.manual_seed(args.seed)

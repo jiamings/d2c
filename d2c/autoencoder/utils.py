@@ -235,7 +235,7 @@ def log_iw(decoder, x, log_q, log_p, crop=False):
 
 
 def reconstruction_loss(decoder, x, crop=False):
-    from distributions import Normal, DiscMixLogistic
+    from .distributions import Normal, DiscMixLogistic
 
     recon = decoder.log_prob(x)
     if crop:

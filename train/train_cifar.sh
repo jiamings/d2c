@@ -7,7 +7,7 @@ export CHECKPOINT_DIR=${PWD}"/cifar10_ckpts"
 
 echo ${CHECKPOINT_DIR}
 
-GPUS=1
+GPUS=4
 LR=0.001
 let BS=GPUS*32
 T=0.07

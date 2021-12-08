@@ -13,7 +13,10 @@ The above script will train the Auto-Encoder first, followed by the training of 
 ### Converting the ckpts
 To combine the 3 ckpts such that it can be used for sampling and editing, run the following for example
 ```
-python convert_ckpt.py --AE_ckpt C10_ckpts/checkpoint_recent.pth.tar --DDIM_ckpt ../d2c/diffusion/cifar10_model/logs/run_0/ckpt.pth --latent_ckpt C10_ckpts/latent_stats.ckpt --output_path combined_C10.ckpt
+python convert_ckpt.py --AE_ckpt C10_ckpts/checkpoint_recent.pth.tar \
+--DDIM_ckpt ../d2c/diffusion/cifar10_model/logs/run_0/ckpt.pth \
+--latent_ckpt C10_ckpts/latent_stats.ckpt \
+--output_path combined_C10.ckpt
 ```
 
 ## Todo

@@ -485,7 +485,7 @@ def train(train_loader, model, criterion, optimizer, epoch, args, writer):
             moco_loss = criterion(F.log_softmax(logits, dim=1), labels)
         else:
             raise NotImplementedError(args.loss + ' not implemented.')
-        loss += 0.0*moco_loss
+        loss += moco_loss
         # acc1/acc5 are (K+1)-way contrast classifier accuracy
         # measure accuracy and record loss
         acc1, acc5 = accuracy(output, target, topk=(1, 5))
